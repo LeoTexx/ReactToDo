@@ -36,6 +36,15 @@ export function TaskList() {
     setTasks(filteredTasks);
   }
 
+  useEffect(() => {
+    const myToDos = localStorage.getItem("@todoleo");
+    myToDos && setTasks(JSON.parse(myToDos));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("@todoleo", JSON.stringify(tasks));
+  }, [tasks]);
+
   return (
     <section className="task-list container">
       <header>
